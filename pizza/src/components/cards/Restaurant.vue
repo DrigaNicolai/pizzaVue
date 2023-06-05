@@ -13,7 +13,9 @@ export default defineComponent({
 
   methods: {
     toRestaurant(): void {
-      this.$router.push(`/restaurant?products=${this.restaurant.products}`);
+      this.$router.push(
+        `/restaurant?products=${this.restaurant.products}&name=${this.restaurant.name}`
+      );
     }
   }
 })
