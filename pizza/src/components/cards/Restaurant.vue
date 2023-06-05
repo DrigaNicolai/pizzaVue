@@ -10,11 +10,17 @@ export default defineComponent({
       type: Object,
     }
   },
+
+  methods: {
+    toRestaurant(): void {
+      this.$router.push(`/restaurant?products=${this.restaurant.products}`);
+    }
+  }
 })
 </script>
 
 <template>
-  <RouterLink to="" class="card card-restaurant">
+  <div @click="toRestaurant()" class="card card-restaurant">
     <img :src="restaurant.image" alt="image" class="card-image" />
     <div class="card-text">
       <div class="card-heading">
@@ -35,7 +41,7 @@ export default defineComponent({
         </div>
       </div>
     </div>
-  </RouterLink>
+  </div>
 </template>
 
 <style scoped>
