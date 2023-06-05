@@ -1,26 +1,29 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import ModalAuth from "@/components/modals/Auth.vue";
+import ModalCart from "@/components/modals/Cart.vue";
 
 export default defineComponent({
   name: "Header",
 
   components: {
-    ModalAuth
+    ModalAuth,
+    ModalCart
   },
 
   data: () => ({
     deliveryAddress: "" as string,
     username: "" as string,
-    showModalAuth: false as boolean
+    showModalAuth: false as boolean,
+    showModalCart: false as boolean,
   }),
 
   methods: {
     toggleModalAuth(): void {
       this.showModalAuth = !this.showModalAuth;
     },
-    goToCart(): void {
-      console.log("Go to cart");
+    toggleModalCart(): void {
+      this.showModalCart = !this.showModalCart;
     },
     login(username: string): void {
       this.username = username;
@@ -44,7 +47,7 @@ export default defineComponent({
       </label>
       <div class="buttons">
         <span class="user-name">{{ username }}</span>
-        <button class="button button-cart" id="cart-button" @click="goToCart()">
+        <button class="button button-cart" id="cart-button" @click="toggleModalCart()">
           <span class="button-cart-svg"></span>
           <span class="button-text">Корзина</span>
         </button>
@@ -70,6 +73,10 @@ export default defineComponent({
       v-if="showModalAuth"
       @closeModal="toggleModalAuth()"
       @login="(username) => login(username)"
+    />
+    <ModalCart
+      v-if="showModalCart"
+      @closeModal="toggleModalCart()"
     />
   </div>
 </template>
